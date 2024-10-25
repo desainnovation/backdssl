@@ -1,10 +1,12 @@
 const express = require('express');
-const app = express();
-const port= 3000;
+const userController = require('./controllers/userController')
 
-app.get('/', (req,res)=>{
-    res.send('!Hola mundo!');
-})
+require('dotenv').config();
+const app = express();
+app.use(express.json());
+app.use('/api/users', userController);
+
+const port= process.env.PORT || 3000;
 
 app.listen(port, ()=>{
     console.log(`servidor corriendo en http://localhost:${port}`)
